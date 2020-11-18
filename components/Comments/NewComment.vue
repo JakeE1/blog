@@ -18,6 +18,12 @@
 <script>
 
 export default {
+	props: {
+		postId: {	
+			type: String,
+			required: true
+		}
+	},
      data () {
 		return {
         message: null,    
@@ -30,8 +36,8 @@ export default {
 	methods: {
 		onSubmit () {
 			this.$store.dispatch('addComment', {
-				postId: '',
-				publish: false,
+				postId: this.postId,
+				publish: true,
 				...this.comment
 			})
 			.then(() => {

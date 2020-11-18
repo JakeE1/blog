@@ -38,7 +38,7 @@ export default {
 		max-height: 488px;
 		margin-bottom: 16px;
 	}
-	.post-content {
+	p {
 		color: #999;
 	}
 }

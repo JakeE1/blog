@@ -11,9 +11,12 @@ export default {
     components: { newPostForm },
     layout: 'admin',
     asyncData (contex) {
+        console.log('Here');
         console.log(contex);
-     return axios.get(`https://blog-app-b278b.firebaseio.com/posts/${contex.params.postid}.json`)
+        // slice because contex.params.id add + in begin of url
+     return axios.get(`https://blog-app-b278b.firebaseio.com/posts/${contex.params.postid.slice(1)}.json`)
       .then(res => {
+          
           console.log(res)
         return {
             
