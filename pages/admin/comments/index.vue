@@ -6,8 +6,8 @@
                 <td><span> {{ comment.name }}</span></td>
                 <td><span> {{ comment.text }}</span></td>
                 <td>
-                    <span v-if="comment.status" class="statu true">Publish</span>
-                    <span v-else class="statu false">Hiden</span>
+                    <span v-if="comment.status" class="status true">Publish</span>
+                    <span v-else class="status false">Hiden</span>
                 </td>
                 <td><span @click="chengeComment(comment.id)" class="link"> Chenge Status</span></td>
                 <td><span @click="deleteComment(comment.id)" class="link"> Delete</span></td>
