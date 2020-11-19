@@ -11,29 +11,21 @@ export default {
     components: { newPostForm },
     layout: 'admin',
     asyncData (contex) {
-        console.log('Here');
-        console.log(contex);
         // slice because contex.params.id add + in begin of url
      return axios.get(`https://blog-app-b278b.firebaseio.com/posts/${contex.params.postid.slice(1)}.json`)
       .then(res => {
-          
-          console.log(res)
         return {
-            
-          post: { ...res.data, id: contex.params.postId }
+          post: { ...res.data, id: contex.params.postid }
         }
       })
-      .catch(e => {
-          console.log('errors');
-          console.log(e);
-          contex.error(e)})
+      .catch(e => contex.error(e))
   },
     methods: {
         onSubmit (post) {
             console.log('Post Editing')
             this.$store.dispatch('editPost', post)
                 .then(() => {
-                    this.router.push('/admin')
+                    this.$router.push('/admin')
                 })
         }
     }

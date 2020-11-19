@@ -1,6 +1,6 @@
 export const state = () => ({
     postLoaded: [],
-    commentsLoaded: []
+    token: null
 })
 
 export const actions = {
@@ -25,8 +25,8 @@ export const actions = {
             })
             .catch(e => console.log(e))
     },
-    editPost ({commit}, post) {
-        return this.$axios.put(`https://blog-app-b278b.firebaseio.com/posts/${post.id}.json`, post)
+    editPost ({commit, state}, post) {
+        return this.$axios.put(`https://blog-app-b278b.firebaseio.com/posts/${post.id.slice(1)}.json?auth=${state.token}`, post)
             .then(res => {
                 console.log(res)
                 commit('editPost', post)
@@ -35,11 +35,21 @@ export const actions = {
     },
     addComment ({commit}, comments) {
         this.$axios.post('https://blog-app-b278b.firebaseio.com/comments.json', comments)
-            .then(res => {
-                commit('addComment', { ...post, id: res.data.name })
-            })
             .catch(e => console.log(e))
-    }
+    },
+    authUser ({commit}, authData) {
+        const KEY = 'AIzaSyCd_U8mccij1TqAtI04YYwkGVEqDFJiH14'
+        return this.$axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${KEY}`, {
+          email: authData.email,
+          password: authData.password,
+          returnSecureToken: true
+        })
+        .then((res) => { commit('setToken', res.data.idToken)})
+        .catch((err) => console.log(err))
+      },
+      logoutUser ({commit}) {
+          commit('destroyToken')
+      }
 }
 
 export const mutations = {
@@ -54,14 +64,19 @@ export const mutations = {
         const postIndex = state.postLoaded.findIndex( post => post.id === postEdit.id)
         state.postLoaded[postIndex] = postEdit
     },
-    addComment (state, comment) {
-        console.log(comment);
-        state.commentsLoaded.push(comment)
+    setToken (state, token) {
+        state.token = token
     },
+    destroyToken (state) {
+        state.token = null
+    }
 }
 
 export const getters = {
     getPostLoaded (state) {
         return state.postLoaded
-    }
+    },
+    checkAuthUser (state) {
+        return state.token != null
+    },
 }
