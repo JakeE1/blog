@@ -4,7 +4,11 @@
 
 <script>
 export default {
-  layout: 'admin', 
+  layout: 'admin',
+  //thats for wotking localStorage in generate mod 
+  mounted () {
+	  this.$store.dispatch('nuxtServerInit')
+  },
   computed: {
 		postsLoaded () {
 			 return this.$store.getters.getPostLoaded

@@ -17,23 +17,29 @@ export default {
   components: {
     post, newComment, comments
   },
+	//SEO
+	head () {
+	let title = this.post.title,
+		descr = this.post.description,
+		img = `mathbook.com/${this.post.img}`,
+		type = 'article'
+	return {
+		title: title,
+		meta: [
+		{ hid: 'og:title', name: 'og:title', content: title},
+		{ hid: 'description', name: 'decription', content: descr},
+		{ hid: 'og:decription', name: 'og:decription', content: descr},
+		{ hid: 'og:type', name: 'og:type', content: type},
+		{ hid: 'og:img', name: 'og:img', content: type}
+		]
+	}
+  },
 	async asyncData (context) {
 		let [post, comments] = await Promise.all([
 			axios.get(`https://blog-app-b278b.firebaseio.com/posts/${context.params.id.slice(1)}.json`),
 			axios.get(`https://blog-app-b278b.firebaseio.com/comments.json`)
 		])
 
-		/* let commentsArray = [],
-			commentsArrayRes = []
-		Object.keys(comments.data).forEach(key => {
-			commentsArray.push(comments.data[key])
-		})
-
-		for (let i=0; i < commentsArray.length; i++) {
-			if (commentsArray[i].postId === context.params.id && commentsArray[i].publish) {
-				commentsArrayRes.push(commentsArray[i])
-			}
-		} */
 		let commentsArrayRes = Object.values(comments.data).filter(comment =>
 		(comment.postId === context.params.id) && comment.publish)
 		return {

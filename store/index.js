@@ -44,12 +44,24 @@ export const actions = {
           password: authData.password,
           returnSecureToken: true
         })
-        .then((res) => { commit('setToken', res.data.idToken)})
+        .then((res) => { 
+            let token = res.data.idToken
+            commit('setToken', res.data.idToken)
+            localStorage.setItem('token', token)
+        })
         .catch((err) => console.log(err))
       },
-      logoutUser ({commit}) {
+    initAuth ({commit}) {
+          let token = localStorage.getItem('token')
+          if (!token) {
+              return false
+          }
+          commit('setToken', token)
+        },
+    logoutUser ({commit}) {
           commit('destroyToken')
-      }
+          localStorage.removeItem('token')
+        }
 }
 
 export const mutations = {
@@ -69,6 +81,7 @@ export const mutations = {
     },
     destroyToken (state) {
         state.token = null
+        
     }
 }
 
