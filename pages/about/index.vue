@@ -2,9 +2,9 @@
   <div class="wrapper-content wrapper-content--fixed">
     <section class="about">
       <div class="container">
-        <h1 class="title">About my tech blog:</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-        <Intro title="Lorem ipsum dolor sit amet"/>
+        <h1 class="title">{{ $t('aboutTitle')}}</h1>
+        <p>{{ $t('mainDescr.descr')}}</p>
+        <Intro :title="$t('aboutPostTitle')"/>
         <div class="page">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
         
@@ -21,6 +21,7 @@
 export default {
    //SEO
   head () {
+    
     let title = 'About My SSR Blog',
         descr = 'About My SSR Blog! With Nuxt.js',
         type = 'site'

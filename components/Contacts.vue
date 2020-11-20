@@ -1,16 +1,16 @@
 <template>
   <section class="contact">
 		<div class="container">
-			<h2 class="title"> Contact me !</h2>
+			<h2 class="title">{{ $t('contactForm.title') }}</h2>
 
 			<Message  v-if="message" :message="message" />
 			<form class="contact-form" @submit.prevent="onSubmit">
-				<AppInput v-model="user.name"> Name: </AppInput>
+				<AppInput v-model="user.name">{{ $t('contactForm.name') }}</AppInput>
 				<AppInput v-model="user.email" type="email"> Email: </AppInput>
-				<AppTextArea v-model="user.text"> Text: </AppTextArea>
+				<AppTextArea v-model="user.text">{{ $t('contactForm.text') }}</AppTextArea>
 
 				<div class="controls">
-					<AppButton>Submit !</AppButton>
+					<AppButton>{{ $t('buttonForm') }}</AppButton>
 				</div>
 			</form>
 		</div>

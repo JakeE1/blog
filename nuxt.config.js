@@ -1,3 +1,6 @@
+
+const { I18N } = require('./locales/i18n-nuxt-config')
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -31,7 +34,9 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    ['nuxt-i18n', I18N],
+    
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

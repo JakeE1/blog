@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper-content wrapper-content--fixed">
     <promo/>
-    <Intro title="My lasts post: " /> 
+    <Intro :title="$t('title')" /> 
     <PostsList :posts="postsLoaded" /> 
     <contacts/>
   </div>
