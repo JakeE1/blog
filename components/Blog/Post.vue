@@ -5,8 +5,8 @@
 			<!-- header -->
 			<div class="post-header">
 				<img :src="post.img" :alt="post.title">
-				<h1 class="title"> {{ post.title }}</h1>
-				<p> {{ post.description }}</p>
+				<h1 class="title description"> {{ post.title }}</h1>
+				<p class="description"> {{ post.description }}</p>
 			</div>
 
 			<!-- body -->

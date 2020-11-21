@@ -16,21 +16,24 @@ import comments from '@/components/Comments/Comments.vue'
 export default { 
   components: {
     post, newComment, comments
-  },
+	},
+	transition: {
+      name: 'slide-fade'
+    },
 	//SEO
 	head () {
-	let title = this.post.title,
-		descr = this.post.description,
-		img = `mathbook.com/${this.post.img}`,
-		type = 'article'
+		let title = this.post.title,
+			descr = this.post.description,
+			img = `mathbook.com/${this.post.img}`,
+			type = 'article'
 	return {
 		title: title,
 		meta: [
-		{ hid: 'og:title', name: 'og:title', content: title},
-		{ hid: 'description', name: 'decription', content: descr},
-		{ hid: 'og:decription', name: 'og:decription', content: descr},
-		{ hid: 'og:type', name: 'og:type', content: type},
-		{ hid: 'og:img', name: 'og:img', content: type}
+			{ hid: 'og:title', name: 'og:title', content: title},
+			{ hid: 'description', name: 'decription', content: descr},
+			{ hid: 'og:decription', name: 'og:decription', content: descr},
+			{ hid: 'og:type', name: 'og:type', content: type},
+			{ hid: 'og:img', name: 'og:img', content: type}
 		]
 	}
   },
@@ -64,6 +67,12 @@ export default {
 	p {
 		color: #999;
 	}
+	.description {
+		opacity: 0;
+		animation: fadeinmove .5s ease;
+		animation-delay: .5s;
+		animation-fill-mode: forwards;
+		}
 }
 .post-body {
 	text-align: left;

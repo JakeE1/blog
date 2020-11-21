@@ -16,6 +16,9 @@ export default {
     promo,
     contacts
   },
+  transition: {
+      name: 'slide-fade'
+    },
   //SEO
   head () {
     let title = 'SSR Blog about Math Books',
