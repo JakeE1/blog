@@ -5,12 +5,9 @@ export const state = () => ({
 })
 
 export const actions = {
-    nuxtServerInit ({commit}, context) {
+    async nuxtServerInit ({commit}, context) {
         let [posts, cards] =  await Promise.all([
-            this.$axios.$get('https://blog-app-b278b.firebaseio.com/posts.json'),
-			this.$axios.$get('https://blog-app-b278b.firebaseio.com/posts.json')
-        ])
-        return this.$axios.$get('https://blog-app-b278b.firebaseio.com/posts.json')
+            this.$axios.$get('https://blog-app-b278b.firebaseio.com/posts.json')
             .then(res => {
                
                 const postArray = []
@@ -20,13 +17,29 @@ export const actions = {
 
                 commit('setPosts', postArray)
             })
-            .catch(e => console.log(e))
+            .catch(e => console.log(e)),
+            this.$axios.$get('https://blog-app-b278b.firebaseio.com/cards.json')
+                .then(res => {
+                    const cardArray = []
+                    for (let key in res) {
+                        cardArray.push( { ...res[key], id: key } )
+                    }
+                    commit('setCards', cardArray)
+                })
+        ])
     
     },
     addPost ({commit}, post) {
         this.$axios.post('https://blog-app-b278b.firebaseio.com/posts.json', post)
             .then(res => {
                 commit('addPost', { ...post, id: res.data.name })
+            })
+            .catch(e => console.log(e))
+    },
+    addCard ({commit}, card) {
+        this.$axios.post('https://blog-app-b278b.firebaseio.com/cards.json', card)
+            .then(res => {
+                commit('addCard', { ...card, id: res.data.name })
             })
             .catch(e => console.log(e))
     },
@@ -74,8 +87,10 @@ export const mutations = {
         state.postLoaded = posts
     },
     addPost (state, post) {
-        console.log(post);
         state.postLoaded.push(post)
+    },
+    setCards (state, cards) {
+        state.cardsLoaded = cards
     },
     editPost (state, postEdit) {
         const postIndex = state.postLoaded.findIndex( post => post.id === postEdit.id)
@@ -95,7 +110,7 @@ export const getters = {
         return state.postLoaded
     },
     getCardsLoaded (state) {
-        return state.cardsLoaded
+        return state.cardsLoaded 
     },
     checkAuthUser (state) {
         return state.token != null

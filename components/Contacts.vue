@@ -28,13 +28,18 @@ export default {
 			name:'',
 			email:'',
 			text:''
-			}
+			},
+		card: {
+			title: 'sfsdf',
+			src: 'asad'
+		}	
 		}
 	},
 	methods: {
 		onSubmit () {
 			this.message = 'Submited'
-			console.log(this.user);
+			this.$store.dispatch('addCard', this.card)
+			console.log(this.user)
 		}
 	}
 }
