@@ -7,6 +7,6 @@ export default {
     buttonForm: 'Submited !',
     contactForm: contactForm,
     mainDescr: mainDescr,
-    posts: 'Posts',
+    mainTitle: 'My SSR Blog ! With Nuxt.js',
     title: 'My last posts',
   }

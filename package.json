@@ -13,6 +13,7 @@
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
+    "nuxt-gsap": "^0.1.4",
     "nuxt-i18n": "^6.15.4"
   },
   "devDependencies": {

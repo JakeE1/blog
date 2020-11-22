@@ -36,6 +36,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     ['nuxt-i18n', I18N],
+    'nuxt-gsap'
     
   ],
 

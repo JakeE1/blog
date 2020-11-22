@@ -1,10 +1,15 @@
 export const state = () => ({
     postLoaded: [],
+    cardsLoaded: [],
     token: null
 })
 
 export const actions = {
     nuxtServerInit ({commit}, context) {
+        let [posts, cards] =  await Promise.all([
+            this.$axios.$get('https://blog-app-b278b.firebaseio.com/posts.json'),
+			this.$axios.$get('https://blog-app-b278b.firebaseio.com/posts.json')
+        ])
         return this.$axios.$get('https://blog-app-b278b.firebaseio.com/posts.json')
             .then(res => {
                
@@ -88,6 +93,9 @@ export const mutations = {
 export const getters = {
     getPostLoaded (state) {
         return state.postLoaded
+    },
+    getCardsLoaded (state) {
+        return state.cardsLoaded
     },
     checkAuthUser (state) {
         return state.token != null

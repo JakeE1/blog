@@ -37,6 +37,9 @@ export default {
   computed: {
 		postsLoaded () {
 			 return this.$store.getters.getPostLoaded
+    },
+    cardsLoaded () {
+			 return this.$store.getters.getCardsLoaded
 		}
 	}
 }

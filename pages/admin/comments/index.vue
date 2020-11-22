@@ -27,20 +27,7 @@ export default {
 	layout: 'admin',
 	data () {
 		return {
-		  comments:[
-				{
-					id: 1,
-					name: 'Alex',
-					text: 'Wery interesting',
-					status: true
-				},
-				{
-					id: 2,
-					name: 'Vlad',
-					text: 'Best Math book ever !',
-					status: true
-				}
-			]
+		  comments:[]
 		}
 	},
 	mounted () {
