@@ -2,11 +2,11 @@ import mainDescr from './header'
 import contactForm from './contactForm'
 
 export default {
-    aboutTitle: 'About my book blog: ',
-    aboutPostTitle: 'Lorem ipsum dolor sit amet',
+    aboutTitle: 'Welkome to our Theatre ! ',
+    aboutPostTitle: 'Theatre Tickets:',
     buttonForm: 'Submited !',
     contactForm: contactForm,
     mainDescr: mainDescr,
-    mainTitle: 'My SSR Blog ! With Nuxt.js',
-    title: 'My last posts',
+    mainTitle: 'Welcome to our Theatre',
+    title: 'Up coming',
   }

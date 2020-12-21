@@ -15,6 +15,15 @@ export default {
     ]
   },
 
+  env: {
+    FIREBASE: {
+      API_KEY: 'AIzaSyCd_U8mccij1TqAtI04YYwkGVEqDFJiH14',
+      DATABASE_NAME: 'blog-app-b278b',
+      PROJECT_ID: 'blog-app-b278b',
+      SENDER_ID: '811265423425'
+    }
+  },
+
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
     { src: '~/assets/scss/main.scss', lang: 'scss' }
@@ -22,7 +31,8 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    '~plugins/app-components.js'
+    '~plugins/app-components.js',
+    {src: '~plugins/seat.service.js', mode:'client'}, 
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -40,7 +50,43 @@ export default {
     
   ],
 
+  
+
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-  }
+    /*
+    ** Run ESLint on save
+    */
+    postcss: {
+      // plugins: {
+      //   'postcss-cssnext': {
+      //     features: {
+      //       customProperties: false
+      //     }
+      //   }
+      // }
+    },
+    extend (config, { isDev, isClient }) {
+      if (isDev && isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+      }
+
+      if (isDev) {
+        config.resolve.alias['config'] = '~/config/development'
+      } else {
+        config.resolve.alias['config'] = '~/config/production'
+      }
+    }
+  },
+  axios: {
+    debug: true,
+    proxy: {
+      'api': 'https://nuxt-fireauth-v5.now.sh'
+    }
+  },
 }

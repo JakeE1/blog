@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper-content wrapper-content--fixed">
-    <promo/>
+    <promo :cardsLoad="cardsLoad" />
     <Intro :title="$t('title')" /> 
     <PostsList :posts="postsLoaded" /> 
     <contacts/>
@@ -16,9 +16,24 @@ export default {
     promo,
     contacts
   },
+  data () {
+    return {
+      cardsLoad : 0
+    }
+  },
+  methods: {
+    startLoad () {
+      console.log("hi");
+    }
+  },
   transition: {
       name: 'slide-fade'
     },
+    
+  beforeRouteEnter(to, from, next) {
+    /* console.log(this.data()); */
+    next();
+  },
   //SEO
   head () {
     let title = 'SSR Blog about Math Books',

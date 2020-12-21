@@ -1,11 +1,11 @@
-<template>
-  <select v-model="selected" @change="changeLocale()" class="lang-switcher">
+  <template>
+  <select v-if="locale.code !== $i18n.locale" v-model="selected" @change="changeLocale()" class="lang-switcher">
     <option :value="selected" selected>{{ $i18n.locale }}</option>
-    <option v-for="locale in $i18n.locales" v-if="locale.code !== $i18n.locale" :key="locale.code" >
+    <option v-for="locale in $i18n.locales"  :key="locale.code" >
       {{ locale.code }}
     </option>
   </select>
-</template>
+</template> 
 
 <script>
 export default {

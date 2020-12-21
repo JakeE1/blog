@@ -2,13 +2,6 @@
   "name": "blog",
   "version": "1.0.0",
   "private": true,
-  "config": {
-    "nuxt": {
-      "host": "0.0.0.0",
-      "port": "3000"
-    }
-  },
-
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -19,13 +12,42 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
     "axios": "^0.21.0",
+    "body-parser": "latest",
+    "config": "^3.3.3",
+    "cookieparser": "^0.1.0",
     "core-js": "^3.6.5",
+    "express": "latest",
+    "express-session": "latest",
+    "firebase": "^8.2.1",
+    "js-cookie": "^2.2.1",
+    "jwt-decode": "^3.1.2",
     "nuxt": "^2.14.6",
     "nuxt-gsap": "^0.1.4",
-    "nuxt-i18n": "^6.15.4"
+    "nuxt-i18n": "^6.15.4",
+    "vue-drag-select": "^0.2.0"
   },
   "devDependencies": {
+    "@nuxtjs/eslint-config": "^0.0.1",
+    "babel-eslint": "^8.2.1",
+    "eslint": "^5.0.1",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-config-standard": ">=12.0.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": ">=2.14.0",
+    "eslint-plugin-jest": ">=21.24.1",
+    "eslint-plugin-node": ">=7.0.1",
+    "eslint-plugin-nuxt": ">=0.4.2",
+    "eslint-plugin-prettier": "2.6.2",
+    "eslint-plugin-promise": ">=4.0.1",
+    "eslint-plugin-standard": ">=4.0.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "nodemon": "^1.18.9",
+    "prettier": "1.14.3",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0"
+  },
+  "now": {
+    "name": "nuxt-fireauth-v5",
+    "alias": "nuxt-fireauth-v5.now.sh"
   }
 }

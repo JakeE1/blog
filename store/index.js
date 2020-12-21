@@ -4,8 +4,17 @@ export const state = () => ({
     token: null
 })
 
+import {getUserFromCookie, getUserFromSession} from '@/helpers'
+
+
 export const actions = {
-    async nuxtServerInit ({commit}, context) {
+    
+    async nuxtServerInit ({ dispatch, commit }, { req }) {
+        const user = getUserFromCookie(req)
+        if (user) {
+          await dispatch('modules/user/setUSER', { name: user.name, email: user.email, avatar: user.picture, uid: user.user_id})
+        }
+      
         let [posts, cards] =  await Promise.all([
             this.$axios.$get('https://blog-app-b278b.firebaseio.com/posts.json')
             .then(res => {
@@ -20,6 +29,7 @@ export const actions = {
             .catch(e => console.log(e)),
             this.$axios.$get('https://blog-app-b278b.firebaseio.com/cards.json')
                 .then(res => {
+                    console.log(`Vlat vot result ${res}`);
                     const cardArray = []
                     for (let key in res) {
                         cardArray.push( { ...res[key], id: key } )

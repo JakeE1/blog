@@ -1,5 +1,5 @@
 export default {
-    title: 'Contact me !',
+    title: 'Contact us !',
     name: 'Name',
     text: 'Text'
 }
